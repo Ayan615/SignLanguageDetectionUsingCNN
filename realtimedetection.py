@@ -2,19 +2,19 @@ from keras.models import model_from_json
 import cv2
 import numpy as np
 
-json_file = open("signlanguagedetectionmodel48x48.json", "r")
+json_file = open("signlanguagedetectionmodel128x128.json", "r")
 model_json = json_file.read()
 json_file.close()
 model = model_from_json(model_json)
-model.load_weights("signlanguagedetectionmodel48x48.h5")
+model.load_weights("signlanguagedetectionmodel128x128.h5")
 
 def extract_features(image):
     feature = np.array(image)
-    feature = feature.reshape(1,48,48,1)
+    feature = feature.reshape(1,128,128,1)
     return feature/255.0
 
 cap = cv2.VideoCapture(0)
-label = ['A', 'M', 'N', 'S', 'T', 'blank']
+label = ['A','B','C','D','E','L' 'M', 'N', 'S', 'T','O','P','U' 'blank']
 while True:
     _,frame = cap.read()
     cv2.rectangle(frame,(0,40),(300,300),(0, 165, 255),1)
